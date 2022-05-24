@@ -60,16 +60,21 @@ export const Project: React.FC<TaskItemProps> = ({ task, isSelected }) => {
         ry={task.barCornerRadius}
         className={styles.projectTop}
       />
-      <rect
-        fill="grey"
-        x={task.x1}
-        width={projectWith}
-        y={task.y}
-        height={task.height}
-        rx={task.barCornerRadius}
-        ry={task.barCornerRadius}
-        className={styles.projectTop}
-      />
+      {task.highlights?.map(highlight => {
+        return (
+          <rect
+            key={highlight.x1}
+            fill="grey"
+            x={highlight.x1}
+            width={highlight.x2 - highlight.x1}
+            y={task.y}
+            height={task.height}
+            rx={task.barCornerRadius}
+            ry={task.barCornerRadius}
+            className={styles.projectTop}
+          />
+        );
+      })}
       <polygon
         className={styles.projectTop}
         points={projectLeftTriangle}

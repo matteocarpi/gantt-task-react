@@ -89,6 +89,7 @@ const convertToBarTask = (
   milestoneBackgroundColor: string,
   milestoneBackgroundSelectedColor: string
 ): BarTask => {
+  console.log({ dates });
   let barTask: BarTask;
   switch (task.type) {
     case "milestone":
@@ -193,6 +194,29 @@ const convertToBar = (
     progressSelectedColor: barProgressSelectedColor,
     ...task.styles,
   };
+
+  const highlights =
+    task.highlights?.map(highlight => {
+      let x1, x2;
+
+      console.log(highlight.end, task.end);
+      if (rtl) {
+        x2 = taskXCoordinateRTL(highlight.start, dates, dateDelta, columnWidth);
+        x1 = taskXCoordinateRTL(highlight.end, dates, dateDelta, columnWidth);
+      } else {
+        x1 = taskXCoordinate(highlight.start, dates, dateDelta, columnWidth);
+        x2 = taskXCoordinate(highlight.end, dates, dateDelta, columnWidth);
+      }
+
+      return {
+        ...highlight,
+        x1,
+        x2,
+      };
+    }) ?? [];
+
+  if (highlights?.length) console.log({ highlights });
+
   return {
     ...task,
     typeInternal,
@@ -208,6 +232,7 @@ const convertToBar = (
     height: taskHeight,
     barChildren: [],
     styles,
+    highlights,
   };
 };
 
@@ -238,8 +263,12 @@ const convertToMilestone = (
     progressSelectedColor: "",
     ...task.styles,
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { highlights, ...restOfTask } = task;
+
   return {
-    ...task,
+    ...restOfTask,
     end: task.start,
     x1,
     x2,
@@ -262,8 +291,10 @@ const taskXCoordinate = (
   xDate: Date,
   dates: Date[],
   dateDelta: number,
-  columnWidth: number
+  columnWidth: number,
+  debug?: boolean
 ) => {
+  if (debug) console.log({ xDate, dates, dateDelta, columnWidth });
   const index = ~~(
     (xDate.getTime() -
       dates[0].getTime() +
@@ -271,6 +302,10 @@ const taskXCoordinate = (
       dates[0].getTimezoneOffset()) /
     dateDelta
   );
+
+  if (index >= dates.length) throw new Error("Highlight is out of task range");
+
+  if (debug) console.log(index, dates.length);
   const x = Math.round(
     (index +
       (xDate.getTime() -

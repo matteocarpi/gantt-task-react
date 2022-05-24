@@ -13,7 +13,7 @@ export function initTasks() {
       hideChildren: false,
       displayOrder: 1,
       highlights: [
-        { start: new Date("5.05.2022"), end: new Date("10.05.2022") },
+        { start: new Date("5.05.2022"), end: new Date("5.10.2022") },
       ],
     },
     {

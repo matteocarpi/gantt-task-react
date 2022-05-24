@@ -1,5 +1,9 @@
-import { Task, TaskType } from "./public-types";
+import { Highlight, Task, TaskType } from "./public-types";
 
+export interface BarHighlight extends Highlight {
+  x1: number;
+  x2: number;
+}
 export interface BarTask extends Task {
   index: number;
   typeInternal: TaskTypeInternal;
@@ -12,6 +16,7 @@ export interface BarTask extends Task {
   barCornerRadius: number;
   handleWidth: number;
   barChildren: BarTask[];
+  highlights?: BarHighlight[];
   styles: {
     backgroundColor: string;
     backgroundSelectedColor: string;
