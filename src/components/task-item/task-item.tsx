@@ -35,6 +35,7 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
   } = {
     ...props,
   };
+  
   const textRef = useRef<SVGTextElement>(null);
   const [taskItem, setTaskItem] = useState<JSX.Element>(<div />);
   const [isTextInside, setIsTextInside] = useState(true);
@@ -45,7 +46,14 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
         setTaskItem(<Milestone {...props} />);
         break;
       case "project":
-        setTaskItem(<Project {...props} />);
+        setTaskItem(
+          <Project
+            {...props}
+            // breaks={[
+            //   { start: new Date("5.05.2022"), end: new Date("10.05.2022") },
+            // ]}
+          />
+        );
         break;
       case "smalltask":
         setTaskItem(<BarSmall {...props} />);

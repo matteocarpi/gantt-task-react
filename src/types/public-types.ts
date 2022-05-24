@@ -8,6 +8,12 @@ export enum ViewMode {
   Month = "Month",
 }
 export type TaskType = "task" | "milestone" | "project";
+
+export interface Highlight {
+  start: Date;
+  end: Date;
+}
+
 export interface Task {
   id: string;
   type: TaskType;
@@ -29,6 +35,7 @@ export interface Task {
   dependencies?: string[];
   hideChildren?: boolean;
   displayOrder?: number;
+  highlights?: Highlight[];
 }
 
 export interface EventOption {

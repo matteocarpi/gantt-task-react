@@ -30,6 +30,7 @@ export const Project: React.FC<TaskItemProps> = ({ task, isSelected }) => {
 
   return (
     <g tabIndex={0} className={styles.projectWrapper}>
+      {/* Progress left */}
       <rect
         fill={barColor}
         x={task.x1}
@@ -55,6 +56,16 @@ export const Project: React.FC<TaskItemProps> = ({ task, isSelected }) => {
         width={projectWith}
         y={task.y}
         height={task.height / 2}
+        rx={task.barCornerRadius}
+        ry={task.barCornerRadius}
+        className={styles.projectTop}
+      />
+      <rect
+        fill="grey"
+        x={task.x1}
+        width={projectWith}
+        y={task.y}
+        height={task.height}
         rx={task.barCornerRadius}
         ry={task.barCornerRadius}
         className={styles.projectTop}
