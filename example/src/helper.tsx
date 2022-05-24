@@ -12,9 +12,6 @@ export function initTasks() {
       type: "project",
       hideChildren: false,
       displayOrder: 1,
-      highlights: [
-        { start: new Date("5.05.2022"), end: new Date("5.10.2022") },
-      ],
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
