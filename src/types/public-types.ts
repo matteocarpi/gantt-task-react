@@ -12,6 +12,7 @@ export type TaskType = "task" | "milestone" | "project";
 export interface Highlight {
   start: Date;
   end: Date;
+  color?: string;
 }
 
 export interface Task {

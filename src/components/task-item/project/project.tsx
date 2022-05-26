@@ -64,7 +64,7 @@ export const Project: React.FC<TaskItemProps> = ({ task, isSelected }) => {
         return (
           <rect
             key={highlight.x1}
-            fill="grey"
+            fill={highlight.color ?? "grey"}
             x={highlight.x1}
             width={highlight.x2 - highlight.x1}
             y={task.y}

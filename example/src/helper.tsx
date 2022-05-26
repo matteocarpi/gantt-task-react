@@ -12,6 +12,13 @@ export function initTasks() {
       type: "project",
       hideChildren: false,
       displayOrder: 1,
+      highlights: [
+        {
+          start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 5),
+          end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 10),
+          color: "red",
+        },
+      ],
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
