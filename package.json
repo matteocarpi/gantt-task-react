@@ -1,6 +1,6 @@
 {
   "name": "@yoopknows/timeline",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Interactive Gantt Chart for React with TypeScript.",
   "author": "YoopKnows <dev@yoopknows.io>",
   "license": "MIT",
